@@ -1,0 +1,31 @@
+[project]
+name = "tic-tac-toe-basic"
+version = "0.1.0"
+description = "Учебное API крестиков-ноликов без базы данных"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.120,<1.0",
+    "uvicorn[standard]>=0.35,<1.0",
+]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28,<1.0",
+    "pytest>=8.4,<9.0",
+    "ruff>=0.14,<1.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.ruff.lint.per-file-ignores]
+# В предметной области O — официальное имя символа игрока, а не неясная переменная.
+"app/schemas.py" = ["E741"]
